@@ -72,7 +72,7 @@ func (dr dockerRunner) command(args ...string) error {
 					[]string{"--build-arg", fmt.Sprintf("%s=%s", proxyVarName, value)}...)
 			}
 		}
-		cmd.Args = append(append(cmd.Args[:2], buildArgs...), cmd.Args[2:]...)
+		cmd.Args = append(cmd.Args[:2], append(buildArgs, cmd.Args[2:]...)...)
 
 		if dr.ctx != nil {
 			stdin, err := cmd.StdinPipe()
